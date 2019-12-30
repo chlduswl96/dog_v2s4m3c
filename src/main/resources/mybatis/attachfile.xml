@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "dev.mvc.attachfile.AttachfileDAOInter">
+  <insert id="create" parameterType="NoticeVO">
+    INSERT INTO attachfile_notice(attachno, noticeno, fname, fupname, thumb, fsize, rdate)
+    VALUES((SELECT NVL(MAX(attachno), 0) + 1 as attachno FROM attachfile_notice),
+                #{noticeno}, #{fname}, #{fupname}, #{thumb}, #{fsize}, sysdate)             
+  </insert>
+   
+  <select id="list" resultType="NoticeVO">
+    SELECT attachno, noticeno, fname, fupname, thumb, fsize, rdate
+    FROM attachfile_notice
+    ORDER BY noticeno DESC,  attachno ASC
+  </select>
+
+  <select id="list_by_noticeno" resultType="AttachfileVO" parameterType="int">
+    SELECT attachno, noticeno, fname, fupname, thumb, fsize, rdate
+    FROM attachfile_notice
+    WHERE noticeno = #{noticeno}
+    ORDER BY fname ASC
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM attachfile_notice
+    WHERE attachno = #{attachno}
+  </delete>
+  
+  <!-- FK 컬럼 값이 사용된 레코드 갯수 산출: id="count_by_contentsno" -->
+  <select id="count_by_noticeno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM attachfile_notice
+    WHERE noticeno=#{noticeno}
+  </select>
+  
+  <!-- FK 컬럼 값이 사용된 레코드 삭제: id="delete_by_contentsno" -->
+  <delete id="delete_by_noticeno" parameterType="int">
+    DELETE FROM attachfile_notice
+    WHERE noticeno=#{noticeno}
+  </delete> 
+
+</mapper> 
+ 
+ 
+
+ 
+ 
