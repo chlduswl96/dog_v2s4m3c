@@ -43,7 +43,7 @@
                   </td>
                   <td style="width: 75%; height: 100%; table-layout: auto;">
                       <span class=>
-                        제목 : ${reviewVO.reviewtitle }
+                        제목 : ${reviewVO.reviewtitle }.
                       </span>
                          (${reviewVO.reviewdate })
                       <div class='menu_line' style='clear: both;'></div>
