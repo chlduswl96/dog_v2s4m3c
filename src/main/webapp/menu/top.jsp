@@ -18,7 +18,8 @@
       <A class='menu_link'  href='${root}/member/sign_up.jsp'>회원가입</A> | 
       <A class='menu_link'  href='${root}/mypage/orderlist.jsp'>장바구니</A> | 
       <A class='menu_link'  href='${root}/mypage/mypage_main.jsp?memno=1'>마이페이지</A> | 
-      <A class='menu_link'  href='${root}/service/service_center.jsp'>고객센터</A>
+      <A class='menu_link'  href='${root}/notice/list.jsp'>고객센터</A> | 
+      <A class='menu_link'  href='${root}/review/list.jsp'>리뷰모아보기</A>
       <%-- <A class='menu_link'  href='${root}/member/list.do'>회원목록</A> --%>
     </DIV>
     <DIV class='top_menu_banner'>

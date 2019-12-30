@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="dev.mvc.dog" />
+	<context:component-scan base-package="dev.mvc.dog" /> 
   <context:component-scan base-package="dev.mvc.notice" />
   <context:component-scan base-package="dev.mvc.attachfile" />
   <context:component-scan base-package="dev.mvc.review" />
