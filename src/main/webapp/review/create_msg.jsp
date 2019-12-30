@@ -28,7 +28,7 @@
       <c:choose>
         <c:when test="${count == 1 }">
           <LI class='li_none'>
-            <span class='span_success'>새로운 리뷰를 등록했습니다.</span>
+            <span class='span_success'>새로운 리뷰를 등록했습니다.!!</span>
           </LI>
         </c:when>
         <c:otherwise>
