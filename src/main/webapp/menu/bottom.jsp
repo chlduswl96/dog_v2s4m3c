@@ -1,17 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
       </DIV> <!-- content END -->
-
-    </DIV><!-- <DIV class="col-md-10 cont"> 종료 -->
+    </div>
   </DIV> <!-- <DIV class="row" style='margin-top: 2px;'> 종료 -->
-
+</div>
   
   <!-- 화면 하단 메뉴 --> 
   <DIV style='text-align: center;'>
     <HR>
     Copyright Resort All rights reserved<br>
-    PUPPY WORLD
+    (HTML5 + CSS3 + JavaScript + jQuery + JAVA + JSP + Spring + MyBATIS + Oracle)
   </DIV>
 
-</DIV> <!-- container END -->  
-
+</DIV> <!-- container END -->
