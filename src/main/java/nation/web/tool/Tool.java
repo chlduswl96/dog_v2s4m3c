@@ -7,9 +7,19 @@ import java.awt.image.PixelGrabber;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+
+import dev.mvc.test.MyAuthentication;
 
 public class Tool {
   /**
@@ -314,6 +324,63 @@ public class Tool {
  
     return date;
   }
+  
+  public static synchronized String ecode_create() {
+    String ecode;
+    ecode = "" + (int)(Math.random() * 10) + (int)(Math.random() * 10) + (int)(Math.random() * 10) + (int)(Math.random() * 10);
+    
+    return ecode;
+  }
+  
+  public static synchronized void send_mail(String email, String content, String subject) {
+    String host = "mw-002.cafe24.com";
+    String from = "testcell2010@gmail.com";
+    content = content.replace("\n", "<BR>");
+    
+    // 메일 전송
+    Properties props = new Properties();  // SMTP 프로토콜 사용, port 25
+    props.put("mail.smtp.host", host);
+    props.put("mail.smtp.auth","true");
+     
+    Authenticator auth = new MyAuthentication();
+    Session sess = Session.getInstance(props, auth);   // 계정 인증 검사
+     
+    try {
+      Message msg = new MimeMessage(sess);   // 메일 내용 객체 생성
+      msg.setFrom(new InternetAddress(from));   // 보내는 사람 설정
+            
+      // 한명에게만 보냄
+      InternetAddress[] address = {new InternetAddress(email)}; // 받는 사람 설정
+      
+      /*
+      // 다중 메일 전송
+      to=mail1@gmail.com,mail2@gmail.com,mail3@gmail.com,mail4@gmail.com,mail5@gmail.com,
+      String[] addrs = to.split(",");
+      InternetAddress[] address = new InternetAddress[30];
+      
+      for(int i=0; i<addrs.length; i++){
+        address[i] = new InternetAddress(addrs[i]);
+      }
+      */
+      
+      msg.setRecipients(Message.RecipientType.TO, address); // 수령인 주소 설정
+            
+      msg.setSubject(subject);                  // 제목 설정 
+      msg.setSentDate(new Date());          // 보낸 날짜 설정
+            
+      // msg.setText(msgText); // 메일 내용으로 문자만 보낼 경우
+     
+      // 보내는 내용으로 HTML 형식으로 보낼 경우
+      msg.setContent(content, "text/html;charset=utf-8");
+            
+      Transport.send(msg);  // 메일 전송
+      // System.out.println("메일 전송 OK!!!");
+    } catch (MessagingException mex) {
+      System.out.println("메일 전송 fail!!!");
+    }
+  }
+  
+ 
   
 }
 
