@@ -30,7 +30,17 @@
                    value="dev.mvc.dog,
                               dev.mvc.notice,
                               dev.mvc.attachfile,
-                              dev.mvc.review" />
+                              dev.mvc.review,
+                              dev.mvc.admin,
+                              dev.mvc.categrp,
+                              dev.mvc.contents,
+                              dev.mvc.employee,
+                              dev.mvc.mem,
+                              dev.mvc.memgrade,
+                              dev.mvc.productfile,
+                              dev.mvc.purchase,
+                              dev.mvc.repository,
+                              dev.mvc.showppingbasket" />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   
