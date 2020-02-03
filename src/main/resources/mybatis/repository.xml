@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.repository.RepositoryDAOInter"> 
+
+  <insert id="create" parameterType="RepositoryVO">
+    INSERT INTO REPOSITORY(REPOSITORYNO,CNT,NAME,CATEGRPNO,MANAGER,price)
+    values
+    (
+        (SELECT NVL(MAX(REPOSITORYNO),0) +1 FROM REPOSITORY),
+        #{cnt},
+        #{name},
+        #{categrpno},
+        #{manager},
+        #{price}
+    )
+  </insert>
+  
+  <select id="list" resultType="RepositoryVO">
+    select p.repositoryno, p.cnt, p.name,c.name as categrpname,p.manager,p.rdate,p.price
+    from repository p inner join categroup c
+    ON p.categrpno = c.categrpno
+    order by c.categrpno desc
+  </select>
+  
+  <delete id="child_delete" parameterType="int"> 
+    DELETE from repository
+    where categrpno = #{categrpno}
+  </delete>
+  
+  <select id='read' parameterType="int" resultType="RepositoryVO">
+    select repositoryno, name, categrpno, manager, rdate, price ,cnt
+    from repository where repositoryno = #{repositoryno}
+  </select>
+  
+  <update id="update" parameterType="RepositoryVO">
+    update repository 
+    set name= #{name},
+    categrpno = #{categrpno},
+    manager = #{manager},
+    price = #{price},
+    cnt = #{cnt}
+    where repositoryno = #{repositoryno}
+  </update>
+  
+  <select id="product_cnt" parameterType="int" resultType="int">
+    select count(*) as cnt from product where repositoryno = #{repositoryno}
+  </select>
+  
+  <delete id="product_delete" parameterType="int">
+    delete from product WHERE repositoryno=#{repositoryno}
+  </delete>
+  
+  <delete id="delete" parameterType="int">
+    delete from repository WHERE repositoryno=#{repositoryno}
+  </delete>
+  
+  <update id="cate_cnt_down" parameterType="HashMap">
+    update categroup set cnt = cnt - #{cnt} where categrpno = #{categrpno}
+  </update>
+  
+  
+</mapper>

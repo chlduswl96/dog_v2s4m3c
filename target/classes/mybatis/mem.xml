@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.mem.MemDAOInter"> 
+   
+   <!-- 전체 회원 목록 -->
+   <select id="list_all" resultType="MemVO">
+     SELECT memgradeno, memno, email, mname, gender, tel, zipcode, address1, address2, id, rdate FROM mem
+     WHERE memgradeno != -1
+     ORDER BY memgradeno DESC, rdate DESC
+   </select>
+   <!-- 등급별 회원 목록 -->
+   <select id="list_by_memgradeno" parameterType="int" resultType="MemVO">
+     SELECT memgradeno, memno, mname, email, gender, tel, zipcode, address1, address2, id, rdate FROM mem
+     WHERE memgradeno=#{memgradeno}
+     ORDER BY rdate DESC
+   </select>
+   <!-- 등급별 회원 수 -->
+   <select id="count_by_memgradeno" parameterType="int" resultType="int">
+     SELECT COUNT(*) as cnt FROM mem
+     WHERE memgradeno=#{memgradeno}
+   </select>
+   <!-- 총 회원 수 -->
+   <select id="count" resultType="int">
+     SELECT COUNT(*) as cnt FROM mem WHERE memgradeno != -1
+   </select>
+   <!-- id 중복확인 -->
+   <select id="idcheck" parameterType="String" resultType="int">
+     SELECT count(*) as count FROM mem
+     WHERE id=#{id}
+   </select>
+   <!-- 패스워드 확인 -->
+   <select id="check_passwd" parameterType="HashMap" resultType="int">
+     SELECT count(*) as count FROM mem
+     WHERE passwd=#{passwd} AND memno = #{memno}
+   </select>
+   <!-- 패스워드 변경 -->
+   <update id="update_passwd" parameterType="HashMap">
+     UPDATE mem SET passwd = #{new_passwd} 
+     WHERE memno = #{memno}
+   </update>
+  <!-- 회원 등록 -->   
+   <insert id="create" parameterType="MemVO">
+     INSERT INTO mem(memno, email, mname, gender, tel, zipcode, address1, address2, id, passwd)
+     VALUES((SELECT NVL(MAX(memno), 0) + 1 as memno FROM mem),
+                #{email}, #{mname}, #{gender}, #{tel}, #{zipcode}, #{address1}, #{address2}, #{id}, #{passwd})
+   </insert>
+   <!-- 등급별 회원 등급변경 -->
+   <update id="update_by_memgradeno" parameterType="HashMap">
+     UPDATE mem SET memgradeno = #{new_memgradeno} WHERE memgradeno = #{memgradeno}
+   </update>
+   <!-- 선택 회원 등급변경 -->
+   <update id="update_grade" parameterType="HashMap">
+     UPDATE mem SET memgradeno = #{memgradeno} WHERE memno = #{memno}
+   </update>
+   <!-- 로그인 -->
+   <select id="login" parameterType="HashMap" resultType="int">
+     SELECT COUNT(memno) as cnt FROM mem
+     WHERE id=#{id} AND passwd=#{passwd}
+   </select>
+   <!-- id로 조회 -->
+   <select id="read_by_id" parameterType="String" resultType="MemVO">
+     SELECT memgradeno, memno, mname, email, gender, tel, zipcode, address1, address2, id, rdate FROM mem
+     WHERE id=#{id}
+   </select>
+   <!-- email로 조회 -->
+   <select id="read_by_email" parameterType="String" resultType="memVO">
+     SELECT id, mname FROM mem
+     WHERE email=#{email}
+   </select>
+   <!-- 조회 -->
+   <select id="read" parameterType="int" resultType="MemVO">
+     SELECT memgradeno, email, memno, mname, gender, tel, zipcode, address1, address2, id, rdate FROM mem
+     WHERE memno=#{memno}
+   </select>
+   <!-- 회원 정보 변경 -->
+   <update id="update" parameterType="MemVO">
+     UPDATE mem 
+     SET tel = #{tel}, zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
+     WHERE memno = #{memno}
+   </update>
+   <!-- 회원 삭제 -->
+   <delete id="delete" parameterType='int'>
+     DELETE FROM mem WHERE memno = #{memno}
+   </delete>    
+
+   <!-- 총 레코드 수 -->
+   <select id="total_recod" parameterType="PagingVO" resultType="int">
+     select COUNT(*) from mem 
+     where ${col} LIKE '%' || #{word} || '%' 
+     ORDER BY rdate DESC
+   </select>
+   <!-- 총 레코드 수 -->
+   <select id="total_recod_by_memgradeno" parameterType="PagingVO" resultType="int">
+     select COUNT(*) from mem 
+     where ${col} LIKE '%' || #{word} || '%' AND memgradeno = #{memgradeno}
+     ORDER BY rdate DESC
+   </select>
+   
+   <!-- 검색, 페이징 목록 -->
+   <select id="search_paging" parameterType='PagingVO' resultType="memVO">
+     SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate, r
+     FROM (
+       SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate, rownum as r
+       FROM (
+         SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate
+         FROM mem
+         where ${col} LIKE '%' || #{word} || '%' AND memgradeno != -1
+         ORDER BY rdate DESC
+       )
+     )
+     WHERE r >= #{startNum} AND r &lt;= #{endNum}
+   </select>
+   
+   <!-- 등급 별 검색, 페이징 리스트 -->
+   <select id="search_paging_by_memgradeno" parameterType='PagingVO' resultType="memVO">
+     SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate, r
+     FROM (
+       SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate, rownum as r
+       FROM (
+         SELECT memno, memgradeno, mname, gender, tel, zipcode, address1, address2, id, passwd, rdate
+         FROM mem
+         where ${col} LIKE '%' || #{word} || '%' AND memgradeno = #{memgradeno}
+         ORDER BY rdate DESC
+       )
+     )
+     WHERE r >= #{startNum} AND r &lt;= #{endNum}
+   </select>
+   
+</mapper>
