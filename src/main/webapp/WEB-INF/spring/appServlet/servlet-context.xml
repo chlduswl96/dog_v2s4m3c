@@ -25,6 +25,18 @@
   <context:component-scan base-package="dev.mvc.notice" />
   <context:component-scan base-package="dev.mvc.attachfile" />
   <context:component-scan base-package="dev.mvc.review" />
+  <context:component-scan base-package="dev.mvc.admin" />
+  <context:component-scan base-package="dev.mvc.categrp" />
+  <context:component-scan base-package="dev.mvc.contents" />
+  <context:component-scan base-package="dev.mvc.employee" />
+  <context:component-scan base-package="dev.mvc.mem" />
+  <context:component-scan base-package="dev.mvc.memgrade" />
+  <context:component-scan base-package="dev.mvc.productfile" />
+  <context:component-scan base-package="dev.mvc.purchase" />
+  <context:component-scan base-package="dev.mvc.repository" />
+  <context:component-scan base-package="dev.mvc.showppingbasket" />
+  
+  
   
 	<beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
