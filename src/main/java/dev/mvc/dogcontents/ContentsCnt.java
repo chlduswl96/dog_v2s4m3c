@@ -54,7 +54,7 @@ public class ContentsCnt {
     ModelAndView mav = new ModelAndView();
     mav.addObject("list",contentsProc.list(categrpno));
     System.out.println(contentsProc.list(categrpno).toString());
-    mav.setViewName("contents/list");
+    mav.setViewName("/contents/list");
     return mav;
   }
   

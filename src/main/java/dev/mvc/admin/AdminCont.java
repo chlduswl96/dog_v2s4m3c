@@ -81,7 +81,7 @@ public class AdminCont {
       session.setAttribute("id_admin", id_admin);
       session.setAttribute("passwd_admin", passwd_admin);
       
-      MemVO memVO = memProc.read(0);
+      MemVO memVO = memProc.read(1);
       
       session.setAttribute("id", memVO.getId());
       session.setAttribute("mname", memVO.getMname());
