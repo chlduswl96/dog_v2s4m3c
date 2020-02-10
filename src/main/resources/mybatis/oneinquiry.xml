@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.oneinquiry.OneinquiryDAOInter"> 
+  <insert id="create" parameterType="OneinquiryVO">
+    INSERT INTO one_inquiry(iqynum, memno, title, content, idate)
+    VALUES((SELECT NVL(MAX(iqynum), 0) + 1 as iqynum FROM one_inquiry), #{memno}, #{title}, #{content}, sysdate)
+  </insert>
+  
+  <select id="list_by_memno" resultType="OneinquiryVO" parameterType="int">
+    SELECT iqynum, memno, title, content, idate, status
+    FROM one_inquiry
+    WHERE memno = #{memno}
+    ORDER BY iqynum DESC
+  </select>
+  
+  <select id="read" resultType="OneinquiryVO" parameterType="int">
+    SELECT iqynum, memno, title, content, idate, status
+    FROM one_inquiry
+    WHERE iqynum = #{iqynum}
+  </select>
+  
+  <update id="update" parameterType="OneinquiryVO">
+    UPDATE one_inquiry
+    SET title = #{title}, content = #{content}
+    WHERE iqynum=#{iqynum}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM one_inquiry
+    WHERE iqynum = #{iqynum}
+  </delete>
+  
+  <select id="max_no" resultType="int">
+    SELECT NVL(MAX(iqynum), 0)  as iqynum FROM one_inquiry
+  </select>
+  
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM one_inquiry
+    WHERE memno=#{memno}
+  </select>
+  
+  <select id="list_by_memno_paging" resultType="OneinquiryVO" parameterType="HashMap">
+    SELECT r, iqynum, memno, title, content, idate, status
+    FROM (
+              SELECT rownum as r, iqynum, memno, title, content, idate, status
+              FROM (
+                        SELECT iqynum, memno, title, content, idate, status
+                        FROM one_inquiry
+                        WHERE memno=#{memno} 
+                        ORDER BY iqynum DESC
+              )
+    )
+    WHERE r &gt;= #{startNum} AND r &lt;= #{endNum}
+  </select>
+</mapper>

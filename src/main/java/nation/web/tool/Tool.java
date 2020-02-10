@@ -8,6 +8,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.mail.Authenticator;
@@ -273,7 +274,7 @@ public class Tool {
     
     return sw;
   }
-
+  
   /**
    * 폴더를 입력받아 절대 경로를 산출합니다. 
    * 예) getRealPath(request, "/media/storage")
@@ -296,22 +297,6 @@ public class Tool {
     return path;
   }
   
-  /**
-   * 파일 삭제
-   * @param fname
-   * @return
-   */
-  public static synchronized boolean deleteFile(String fname) {
-    File file = new File(fname);
-    boolean ret = false;
-    
-      if (file.exists()){
-        ret = file.delete();
-      }
-    
-    return ret;
-  }
- 
   /**
    * 동시 접속자 다운로드의 충돌 처리
    * 2019-12-06_123020_100
@@ -379,8 +364,7 @@ public class Tool {
       System.out.println("메일 전송 fail!!!");
     }
   }
-  
- 
+
   
 }
 

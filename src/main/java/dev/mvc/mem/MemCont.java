@@ -376,6 +376,7 @@ public class MemCont {
       session.setAttribute("id", id);
       session.setAttribute("mname", memVO.getMname());
       session.setAttribute("memVO", memVO);
+      session.setAttribute("memno", memVO.getMemno());
       
     } else {
       mav.setViewName("redirect:./login_fail_msg.jsp");
