@@ -46,5 +46,11 @@
 	<beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
   </beans:bean>
+  
+  <!-- 관리자 계정  -->
+  <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+    <beans:property name="location" value="/WEB-INF/config/admin.properties"/> 
+    <beans:property name="fileEncoding" value="UTF-8" /> 
+  </beans:bean>
 	
 </beans:beans>

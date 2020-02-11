@@ -24,6 +24,8 @@ public class AdminProc implements AdminProcInter {
    * @return
    */
   public boolean admin_check(String id_admin, String passwd_admin) {
+    System.out.println(id_admin);
+    System.out.println(passwd_admin);
     boolean sw = false;
     String[] admins = {admin1, admin2, admin3};
     
@@ -39,10 +41,10 @@ public class AdminProc implements AdminProcInter {
   
   @Override
   public boolean login(String id_admin, String passwd_admin){
-    // System.out.println(admin1);
-    // System.out.println(admin2);
-    // System.out.println(admin3);
-
+   /* System.out.println(admin1);
+     System.out.println(admin2);
+     System.out.println(admin3);
+*/
     boolean sw = admin_check(id_admin, passwd_admin);
     
     return sw;
