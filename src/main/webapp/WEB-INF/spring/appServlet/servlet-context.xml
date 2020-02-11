@@ -38,8 +38,10 @@
   <context:component-scan base-package="dev.mvc.answer" />
   <context:component-scan base-package="dev.mvc.dogcontents" />
   <context:component-scan base-package="dev.mvc.oneinquiry" />
+  <context:component-scan base-package="dev.mvc.notice" />
   <context:component-scan base-package="dev.mvc.test" />
   <context:component-scan base-package="nation.web.tool" />
+  
   
   
   

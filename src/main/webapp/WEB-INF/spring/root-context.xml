@@ -44,6 +44,7 @@
                               dev.mvc.answer,
                               dev.mvc.dogcontents,
                               dev.mvc.oneinquiry,
+                              dev.mvc.notice,
                               dev.mvc.test,
                               nation.web.tool" />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
