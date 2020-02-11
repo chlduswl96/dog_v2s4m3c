@@ -26,8 +26,7 @@
     강아지 용품 사이트
   </DIV> -->
   
-  <DIV style='width:70%; margin:10px auto'>
-    <img src='./css/images/dog_banner.jpg' style='width: 100%; display: block; margin: 0px auto;'> 
+  <img src='./css/images/dog_banner.jpg' style='width: 100%; height: 100%;  margin: 0px auto;'> 
   <!-- </DIV> 
   
   <div style='width: 70%; margin: 0px auto;'> -->
