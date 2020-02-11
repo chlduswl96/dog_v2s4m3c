@@ -8,17 +8,17 @@
   <DIV class='top_menu'>
     <DIV class='top_menu_label'>
       <c:choose>
-        <c:when test="${sessionScope.id == null}">
+        <c:when test="${sessionScope.id eq null}">
           <A class='menu_link'  href='${root}/member/login.jsp' >로그인</A> | 
+          <A class='menu_link'  href='${root}/member/sign_up.jsp'>회원가입</A> |
         </c:when>
         <c:otherwise>
-          ${sessionScope.id } <A class='menu_link'  href='${root}/member/logout.do' >Logout</A> <span class='top_menu1'> | </span>
+          ${sessionScope.id } <A class='menu_link'  href='${root}/mem/logout.do' >Logout</A> <span class='top_menu1'> | </span>
+          <A class='menu_link'  href='${root}/mypage/orderlist.jsp'>장바구니</A> <span class='top_menu1'> | </span> 
+          <A class='menu_link'  href='${root}/mypage/mypage_main.jsp?memno=1'>마이페이지</A> <span class='top_menu1'> | </span>
+          <A class='menu_link'  href='${root}/service/service_center.jsp'>고객센터</A>
         </c:otherwise>
       </c:choose>
-      <A class='menu_link'  href='${root}/member/sign_up.jsp'>회원가입</A> | 
-      <A class='menu_link'  href='${root}/mypage/orderlist.jsp'>장바구니</A> | 
-      <A class='menu_link'  href='${root}/mypage/mypage_main.jsp?memno=1'>마이페이지</A> | 
-      <A class='menu_link'  href='${root}/service/service_center.jsp'>고객센터</A>
       <%-- <A class='menu_link'  href='${root}/member/list.do'>회원목록</A> --%>
     </DIV>
     <DIV class='top_menu_banner'>
@@ -66,7 +66,7 @@
           <li class='mypg_li_none' style='font-size: 0.8em;'>회원 정보 수정</li>
           <li class='mypg_li_none' style='font-size: 0.8em;'>비밀번호 변경</li>
         </ul>
-        <a href="javascript:; onclick=cart()">
+        <a href="${root }/mypage/orderlist.jsp?memno=1">
           <span style='margin-left: 10px; font-size: 0.9em; font-weight: bold;'> 장바구니 </span>
         </a><br>
         <span style='margin-left: 10px; font-size: 0.9em; font-weight: bold;'> 주문조회</span><br>
