@@ -19,7 +19,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+	</beans:bean>       
 	
 	<context:component-scan base-package="dev.mvc.dog" /> 
   <context:component-scan base-package="dev.mvc.notice" />
@@ -28,13 +28,18 @@
   <context:component-scan base-package="dev.mvc.admin" />
   <context:component-scan base-package="dev.mvc.categrp" />
   <context:component-scan base-package="dev.mvc.contents" />
-  <context:component-scan base-package="dev.mvc.employee" />
+  <context:component-scan base-package="dev.mvc.employ" />
   <context:component-scan base-package="dev.mvc.mem" />
   <context:component-scan base-package="dev.mvc.memgrade" />
   <context:component-scan base-package="dev.mvc.productfile" />
   <context:component-scan base-package="dev.mvc.purchase" />
   <context:component-scan base-package="dev.mvc.repository" />
   <context:component-scan base-package="dev.mvc.showppingbasket" />
+  <context:component-scan base-package="dev.mvc.answer" />
+  <context:component-scan base-package="dev.mvc.dogcontents" />
+  <context:component-scan base-package="dev.mvc.oneinquiry" />
+  <context:component-scan base-package="dev.mvc.test" />
+  <context:component-scan base-package="nation.web.tool" />
   
   
   

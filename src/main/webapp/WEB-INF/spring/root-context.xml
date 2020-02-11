@@ -34,13 +34,18 @@
                               dev.mvc.admin,
                               dev.mvc.categrp,
                               dev.mvc.contents,
-                              dev.mvc.employee,
+                              dev.mvc.employ,
                               dev.mvc.mem,
                               dev.mvc.memgrade,
                               dev.mvc.productfile,
                               dev.mvc.purchase,
                               dev.mvc.repository,
-                              dev.mvc.showppingbasket" />
+                              dev.mvc.showppingbasket,
+                              dev.mvc.answer,
+                              dev.mvc.dogcontents,
+                              dev.mvc.oneinquiry,
+                              dev.mvc.test,
+                              nation.web.tool" />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   
