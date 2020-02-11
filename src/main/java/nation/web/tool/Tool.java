@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import dev.mvc.test.MyAuthentication;
 
-
 public class Tool {
   /**
    * FileUpload 1.2, 1.3 한글 변환
@@ -338,16 +337,16 @@ public class Tool {
       // 한명에게만 보냄
       InternetAddress[] address = {new InternetAddress(email)}; // 받는 사람 설정
       
-      
-      /*// 다중 메일 전송
+      /*
+      // 다중 메일 전송
       to=mail1@gmail.com,mail2@gmail.com,mail3@gmail.com,mail4@gmail.com,mail5@gmail.com,
       String[] addrs = to.split(",");
       InternetAddress[] address = new InternetAddress[30];
       
       for(int i=0; i<addrs.length; i++){
         address[i] = new InternetAddress(addrs[i]);
-      }*/
-      
+      }
+      */
       
       msg.setRecipients(Message.RecipientType.TO, address); // 수령인 주소 설정
             
@@ -356,7 +355,7 @@ public class Tool {
             
       // msg.setText(msgText); // 메일 내용으로 문자만 보낼 경우
      
-    // 보내는 내용으로 HTML 형식으로 보낼 경우
+      // 보내는 내용으로 HTML 형식으로 보낼 경우
       msg.setContent(content, "text/html;charset=utf-8");
             
       Transport.send(msg);  // 메일 전송

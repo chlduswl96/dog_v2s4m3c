@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "dev.mvc.attachfile.AttachfileDAOInter">
+  <insert id="create" parameterType="AttachfileVO">
+    INSERT INTO attachfile_inquiry(attachfileno, iqynum, fname, fupname, thumb, fsize, fdate)
+    VALUES ((SELECT NVL(MAX(attachfileno), 0) + 1 as attachfileno FROM attachfile_inquiry),
+                 #{iqynum}, #{fname}, #{fupname}, #{thumb}, #{fsize}, sysdate)
+  </insert>
+  
+  <select id="list" resultType="AttachfileVO">
+    SELECT attachfileno, iqynum, fname, fupname, thumb, fsize, fdate
+    FROM attachfile_inquiry
+    ORDER BY iqynum DESC,  attachfileno ASC
+  </select>
+
+  <select id="list_by_iqynum" resultType="AttachfileVO" parameterType="int">
+    SELECT attachfileno, iqynum, fname, fupname, thumb, fsize, fdate
+    FROM attachfile_inquiry
+    WHERE iqynum = #{iqynum}
+    ORDER BY fname ASC
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM attachfile_inquiry
+    WHERE attachfileno = #{attachfileno}
+  </delete>
+  
+  <!-- FK 컬럼 값이 사용된 레코드 갯수 산출: id="count_by_contentsno" -->
+  <select id="count_by_contentsno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM attachfile_inquiry
+    WHERE iqynum=#{iqynum}
+  </select>
+  
+  <!-- FK 컬럼 값이 사용된 레코드 삭제: id="delete_by_contentsno" -->
+  <delete id="delete_by_iqynum" parameterType="int">
+    DELETE FROM attachfile_inquiry
+    WHERE iqynum=#{iqynum}
+  </delete> 
+
+</mapper> 
+ 
+ 
+
+ 
+ 
