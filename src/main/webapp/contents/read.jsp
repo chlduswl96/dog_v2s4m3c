@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  
-<script>
+<script> 
 
 var number = 0;
 var setnumber = 0;
@@ -94,7 +94,7 @@ $(document).ready(function(){
 	        }
         }
       },
-      
+       
       error : function(request, status, error) { // callback 함수
         var msg = 'ERROR<br><br>';
         msg += '<strong>request.status</strong><br>' + request.status
@@ -102,8 +102,8 @@ $(document).ready(function(){
         msg += '<strong>error</strong><br>' + error + '<hr>';
         console.log(msg);
       }
-    },
-    $.ajax(obj);
+    }, 
+    $.ajax(obj);  
 }); 
 
 function changeRepresentImage(num) {
