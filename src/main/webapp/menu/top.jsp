@@ -65,6 +65,11 @@
               <span class="glyphicon glyphicon-list-alt" style="margin-right: 5px;"></span>장바구니
             </A>
           </li>
+          <li>
+            <A class='menu_link'  href='${root}/notice/list.do'>
+              <span class="glyphicon glyphicon-list-alt" style="margin-right: 5px;"></span>고객센터
+            </A>
+          </li>
           <li style='margin-right: 20px;'>
             <A class='menu_link'  href='${root}/mem/logout.do'>
               <span class="glyphicon glyphicon-user" ></span>logout

@@ -74,7 +74,7 @@ $(document).ready(function(){
   }, 2000);
   
   var obj =  {
-      url : '/team6/productfile/file_read.do',
+      url : '/dog/productfile/file_read.do',
       type : 'get',
       cache: false,
       async : true,

@@ -38,13 +38,20 @@
   <context:component-scan base-package="dev.mvc.answer" />
   <context:component-scan base-package="dev.mvc.dogcontents" />
   <context:component-scan base-package="dev.mvc.oneinquiry" />
+  <context:component-scan base-package="dev.mvc.notice" />
   <context:component-scan base-package="dev.mvc.test" />
   <context:component-scan base-package="nation.web.tool" />
   
   
   
+  
 	<beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  </beans:bean>
+  
+    <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <beans:property name="location" value="/WEB-INF/config/admin.properties"/>  
+    <beans:property name="fileEncoding" value="UTF-8" /> 
   </beans:bean>
 	
 </beans:beans>
